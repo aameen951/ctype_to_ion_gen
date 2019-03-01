@@ -1,0 +1,23 @@
+import libc
+
+func libc_isascii(c: char):bool {
+    return uint8(c) & 0x80 == 0;
+}
+
+func main() {
+    for(i:=0; i<0x100; i++) {
+        #assert(isblank(i) == bool(libc.isblank(i)));
+        #assert(iscntrl(i) == bool(libc.iscntrl(i)));
+        #assert(isdigit(i) == bool(libc.isdigit(i)));
+        #assert(isupper(i) == bool(libc.isupper(i)));
+        #assert(islower(i) == bool(libc.islower(i)));
+        #assert(isprint(i) == bool(libc.isprint(i)));
+        #assert(ispunct(i) == bool(libc.ispunct(i)));
+        #assert(isspace(i) == bool(libc.isspace(i)));
+        #assert(isxdigit(i) == bool(libc.isxdigit(i)));
+        #assert(isalpha(i) == bool(libc.isalpha(i)));
+        #assert(isalnum(i) == bool(libc.isalnum(i)));
+        #assert(isgraph(i) == bool(libc.isgraph(i)));
+        #assert(isascii(i) == bool(libc_isascii(i)));
+    }
+}
