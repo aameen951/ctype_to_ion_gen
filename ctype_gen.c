@@ -127,6 +127,17 @@ int main()
     Out += sprintf(Out, I "return isclass(c, %s);" "\n", m->flags);
     Out += sprintf(Out, "}\n");
   }
+  Out += sprintf(Out, "\n");
+
+  Out += sprintf(Out, "@inline\n");
+  Out += sprintf(Out, "func toupper(c: char): char {\n");
+  Out += sprintf(Out, I "return islower(c) ? c ^ 0b100000 : c;" "\n");
+  Out += sprintf(Out, "}\n");
+
+  Out += sprintf(Out, "@inline\n");
+  Out += sprintf(Out, "func tolower(c: char): char {\n");
+  Out += sprintf(Out, I "return isupper(c) ? c ^ 0b100000 : c;" "\n");
+  Out += sprintf(Out, "}\n");
 
   // write to file
   FILE *f = fopen("gen/ctype.ion", "wb");
@@ -158,6 +169,8 @@ int main()
     else
       Out += sprintf(Out, I I "#assert(%s(i) == bool(libc.%s(i)));" "\n", m->fn_name, m->fn_name);
   }
+  Out += sprintf(Out, I I "#assert(uint8(toupper(i)) == libc.toupper(i));" "\n");
+  Out += sprintf(Out, I I "#assert(uint8(tolower(i)) == libc.tolower(i));" "\n");
   Out += sprintf(Out, I "}" "\n");
   Out += sprintf(Out, "}\n");
 

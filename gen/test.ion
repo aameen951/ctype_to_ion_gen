@@ -19,5 +19,7 @@ func main() {
         #assert(isalnum(i) == bool(libc.isalnum(i)));
         #assert(isgraph(i) == bool(libc.isgraph(i)));
         #assert(isascii(i) == bool(libc_isascii(i)));
+        #assert(uint8(toupper(i)) == libc.toupper(i));
+        #assert(uint8(tolower(i)) == libc.tolower(i));
     }
 }

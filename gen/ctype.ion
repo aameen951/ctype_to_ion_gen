@@ -84,3 +84,12 @@ func isgraph(c: char): bool {
 func isascii(c: char): bool {
     return isclass(c, CNTRL | PRINT);
 }
+
+@inline
+func toupper(c: char): char {
+    return islower(c) ? c ^ 0b100000 : c;
+}
+@inline
+func tolower(c: char): char {
+    return isupper(c) ? c ^ 0b100000 : c;
+}
